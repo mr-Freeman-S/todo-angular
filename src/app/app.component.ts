@@ -1,23 +1,26 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TodoModel} from "./models/todo-model";
+import {TodoStorageService} from "./services/todo-storage.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'todo-angular-app';
-  todoItems: TodoModel[] = [
-    {title: 'angular introducing'},
-    {title: 'interface introducing'},
-  ];
+  todoItems: TodoModel[] = []
+  constructor(private todoStorage: TodoStorageService ) {
+  }
 
-  constructor() {
+  ngOnInit() {
+    this.todoItems = this.todoStorage.todoItems
   }
 
   addTodo(titleTodo: string) {
-
+    this.todoStorage.addTodo(titleTodo)
   }
-
+  removeTodo(index:number) {
+    this.todoStorage.removeTodo(index)
+  }
 }

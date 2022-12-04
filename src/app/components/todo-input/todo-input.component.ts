@@ -9,11 +9,12 @@ export class TodoInputComponent implements OnInit{
   todoTitle:string = ''
   constructor() {
   }
-  @Output() submit = new EventEmitter<string>()
+  @Output() todoTitleSubmit = new EventEmitter<string>()
   ngOnInit():void {
   }
 
   submitTodo() {
-    this.submit.emit(this.todoTitle)
+    this.todoTitleSubmit.emit(this.todoTitle);
+    this.todoTitle = '';
   }
 }

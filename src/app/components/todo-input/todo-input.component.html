@@ -1,4 +1,4 @@
 <div>ToDo title: {{todoTitle}}</div>
 
-<input type="text" [(ngModel)]="todoTitle">
+<input type="text" [(ngModel)]="todoTitle" (keyup.enter)="submitTodo()">
 <button (click)="submitTodo()">Submit</button>
